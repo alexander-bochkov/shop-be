@@ -1,0 +1,15 @@
+{
+  "name": "shop-be",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "create:service": "serverless create --template aws-nodejs-typescript --path",
+    "deploy:product-service": "cd ./product-service && serverless deploy"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless": "^3.38.0"
+  }
+}
