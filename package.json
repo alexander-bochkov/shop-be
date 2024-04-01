@@ -5,11 +5,16 @@
   "private": true,
   "scripts": {
     "create:service": "serverless create --template aws-nodejs-typescript --path",
-    "deploy:product-service": "cd ./product-service && serverless deploy"
+    "deploy:product-service": "cd ./product-service && serverless deploy",
+    "fill-database": "node ./utils/fill-database.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "serverless": "^3.38.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.540.0",
+    "uuid": "^9.0.1"
   }
 }
