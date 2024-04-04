@@ -1,19 +1,18 @@
-import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
 import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
-import { products } from '@functions/data';
-import type { Product } from '@functions/types';
+import { getProductById, getStockByProductId } from '@libs/database';
 
-const getProductsById: ValidatedEventAPIGatewayProxyEvent<Product> = async (event) => {
+const getProductsById = async (event) => {
   try {
     const { productId } = event.pathParameters;
-    const product = products.find(({ id }) => id === parseInt(productId));
 
-    if (!product) {
-      return { statusCode: 404, body: JSON.stringify({ message: 'Product not found' }) }
-    }
+    const product = await getProductById(productId);
+    const stock = await getStockByProductId(productId);
 
-    return formatJSONResponse(product);
+    console.log('product: ', product);
+    console.log('stock: ', stock);
+
+    return formatJSONResponse({ ...product, count: stock.count });
   } catch(_) {
     return { statusCode: 500, body: JSON.stringify({ message: 'Internal Server Error' }) };
   }
