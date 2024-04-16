@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "create:service": "serverless create --template aws-nodejs-typescript --path",
-    "deploy:product-service": "cd ./product-service && serverless deploy",
+    "deploy:authorization-service": "cd ./authorization-service && serverless deploy",
     "deploy:import-service": "cd ./import-service && serverless deploy",
+    "deploy:product-service": "cd ./product-service && serverless deploy",
     "fill-database": "node ./utils/fill-database.js"
   },
   "author": "",
